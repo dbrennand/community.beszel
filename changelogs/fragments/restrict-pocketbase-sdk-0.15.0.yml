@@ -1,0 +1,2 @@
+bugfixes:
+  - Pin the controller-side ``pocketbase`` dependency to ``0.15.0`` to address issue `#42 <https://github.com/ansible-collections/community.beszel/issues/42>`__.
