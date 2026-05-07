@@ -85,7 +85,7 @@ Ansible Core 2.17, 2.18, 2.19 and 2.20.
 To use the modules in this collection you will need:
 
 - Python >= 3.9
-- Pocketbase >= 0.15.0
+- Pocketbase == 0.15.0
 
 ## Using this collection
 
