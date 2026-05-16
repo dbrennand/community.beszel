@@ -1,0 +1,12 @@
+[run]
+include =
+    plugins/**/*.py
+    */site-packages/ansible_collections/community/beszel/plugins/**/*.py
+
+[paths]
+source =
+    plugins
+    */site-packages/ansible_collections/community/beszel/plugins
+
+[report]
+show_missing = True
