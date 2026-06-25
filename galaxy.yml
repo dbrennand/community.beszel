@@ -17,19 +17,26 @@ tags:
   - linux
   - application
 repository: https://github.com/ansible-collections/community.beszel
-# documentation: https://github.com/ansible-collection-migration/community.REPO_NAME/tree/main/docs
 homepage: https://github.com/ansible-collections/community.beszel
 issues: https://github.com/ansible-collections/community.beszel/issues
 build_ignore:
   # https://docs.ansible.com/ansible/devel/dev_guide/developing_collections_distributing.html#ignoring-files-and-folders
   - .gitignore
-  - changelogs/.plugin-cache.yaml
-  - .github
-  - .vscode
   - .pre-commit-config.yaml
   - .yamllint
-  - codecov.yml
-  - flake8.ini
-  - uv.lock
+  - .coveragerc
+  - .github
+  - .vscode
   - .tox
   - .venv
+  - .claude
+  - .pytest_cache
+  - changelogs/.plugin-cache.yaml
+  - codecov.yml
+  - flake8.ini
+  - tox-ansible.ini
+  - uv.lock
+  - ansible.cfg
+  - collections
+  - tests/integration
+  - tests/unit
