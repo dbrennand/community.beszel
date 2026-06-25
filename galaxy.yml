@@ -38,5 +38,3 @@ build_ignore:
   - uv.lock
   - ansible.cfg
   - collections
-  - tests/integration
-  - tests/unit
