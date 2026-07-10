@@ -3,9 +3,8 @@ name = "community-beszel"
 version = "1.1.0"
 description = "Ansible community collection for Beszel."
 readme = "README.md"
-requires-python = ">=3.13, <3.14"
+requires-python = ">=3.11, <3.14"
 dependencies = [
-    "ansible-core==2.20.0",
     "pocketbase",
 ]
 
@@ -17,12 +16,12 @@ dev = [
 ]
 test = [
     "ruff>=0.15.10",
+    "ansible-lint>=26.6.0",
+    # Introduced via community.general
     "jmespath>=1.0.1",
-    "yamllint>=1.38.0",
-    "flake8>=7.3.0",
     "tox-uv-bare>=1.35.1",
     "tox-ansible>=26.3.0",
 ]
 
 [tool.uv.sources]
-tox-ansible = { git = "https://github.com/ansible/tox-ansible.git", rev = "1d04f7dde3b95b74575b1f4d2f8c1f0707e0be6f" }
+tox-ansible = { git = "https://github.com/dbrennand/tox-ansible.git", rev = "cfd3e097abd38f91138462dd9ceb8e6121b4fcd5" }
