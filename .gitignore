@@ -8,6 +8,7 @@ ansible.cfg
 /changelogs/.plugin-cache.yaml
 # Exclude any locally built collection tarballs
 *.tar.gz
+# Exclude vscode local settings
 .vscode/settings.json
 # Required for pytest-ansible
 ansible_collections/
