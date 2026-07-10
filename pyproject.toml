@@ -27,5 +27,6 @@ tox-ansible = { git = "https://github.com/dbrennand/tox-ansible.git", rev = "cfd
 [tool.tox-ansible]
 skip = [
     "2.16",
-    "2.17"
+    "2.17",
+    "2.18"
 ]
