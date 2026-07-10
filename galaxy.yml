@@ -21,20 +21,19 @@ homepage: https://github.com/ansible-collections/community.beszel
 issues: https://github.com/ansible-collections/community.beszel/issues
 build_ignore:
   # https://docs.ansible.com/ansible/devel/dev_guide/developing_collections_distributing.html#ignoring-files-and-folders
-  - .gitignore
-  - .pre-commit-config.yaml
-  - .yamllint
-  - .coveragerc
+  - tests/integration
+  - tests/unit
+  - extensions/molecule
+  - changelogs
+  - docs
+  - collections
   - .github
-  - .vscode
+  - .ansible
   - .tox
   - .venv
+  - .agents
   - .claude
+  - .vscode
   - .pytest_cache
-  - changelogs/.plugin-cache.yaml
-  - codecov.yml
-  - flake8.ini
-  - tox-ansible.ini
-  - uv.lock
-  - ansible.cfg
-  - collections
+  - .pre-commit-config.yaml
+  - ansible_collections
