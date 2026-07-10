@@ -76,7 +76,7 @@ Every voice is important. If you have something on your mind, create an issue or
 
 <!-- List the versions of Ansible the collection has been tested with. Must match what is in galaxy.yml. -->
 
-Ansible Core 2.17, 2.18, 2.19 and 2.20.
+Ansible Core 2.18, 2.19, 2.20 and 2.21.
 
 ## External requirements
 
@@ -84,8 +84,8 @@ Ansible Core 2.17, 2.18, 2.19 and 2.20.
 
 To use the modules in this collection you will need:
 
-- Python >= 3.9
-- Pocketbase
+- Python >= 3.11
+- [Pocketbase](https://github.com/vaphes/pocketbase)
 
 ## Using this collection
 
