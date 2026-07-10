@@ -25,6 +25,7 @@ test = [
 tox-ansible = { git = "https://github.com/dbrennand/tox-ansible.git", rev = "0a407521f284ef4117394f15a8ec6528d10f6317" }
 
 [tool.tox-ansible]
+coverage = true
 skip = [
     "2.16",
     "2.17",
