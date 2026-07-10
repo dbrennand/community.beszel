@@ -23,3 +23,9 @@ test = [
 
 [tool.uv.sources]
 tox-ansible = { git = "https://github.com/dbrennand/tox-ansible.git", rev = "cfd3e097abd38f91138462dd9ceb8e6121b4fcd5" }
+
+[tool.tox-ansible]
+skip = [
+    "2.16",
+    "2.17"
+]
