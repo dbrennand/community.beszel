@@ -10,6 +10,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "antsibull-changelog>=0.35.1",
     "codespell>=2.4.1",
     "prek>=0.2.20",
     {include-group = "test"},
