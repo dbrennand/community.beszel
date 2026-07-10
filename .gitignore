@@ -12,6 +12,7 @@ ansible.cfg
 .vscode/settings.json
 # Required for pytest-ansible
 ansible_collections/
+collections/
 # Ruff
 .ruff_cache/
 # MacOS
