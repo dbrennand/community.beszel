@@ -1,2 +1,3 @@
-# Integration tests dependencies
-pocketbase==0.15.0
+pocketbase
+# Introduced via community.general
+jmespath>=1.0.1
