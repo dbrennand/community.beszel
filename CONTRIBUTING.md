@@ -15,8 +15,8 @@ Once ADE is installed, follow the steps below for contributing to `community.bes
 2. Clone your fork of the `community.beszel` collection:
 
     ```bash
-    git clone https://github.com/YOUR_USERNAME/community.beszel.git ~/ansible_collections/community/beszel
-    cd ~/ansible_collections/community/beszel
+    git clone https://github.com/YOUR_USERNAME/community.beszel.git
+    cd community.beszel
     ```
 
 3. Create your feature branch:
@@ -28,11 +28,14 @@ Once ADE is installed, follow the steps below for contributing to `community.bes
 4. Initialize the development environment using `uv` and ADE:
 
     ```bash
+    # Install development dependencies
     uv sync --dev
+    # Install pre-commit hooks
     uv run prek install
+    # Install collection dependencies
     uv pip install -r meta/ee-requirements.txt
-    ade install --editable --no-seed --venv .venv .
-    ade install --no-seed --venv .venv -r extensions/molecule/requirements.yml
+    # Install the collection into the Python virtual environment
+    ade install --editable --no-seed .
     ```
 
 You are now ready to begin developing the collection. Please familiarize yourself with the [Ansible community guide](https://docs.ansible.com/ansible/devel/community/index.html).
@@ -51,6 +54,14 @@ uv add <package> --dev
 
 Add a new Python collection dependency by adding it to the [`meta/ee-requirements.txt`](meta/ee-requirements.txt). The Python dependency must be version constrained.
 
+## Running pre-commit checks
+
+Run all [`prek`](https://prek.j178.dev/) hooks from the project root:
+
+```bash
+uv run prek run --all-files
+```
+
 ## Running Molecule tests
 
 The `community.beszel` Ansible collection uses [Molecule](https://ansible.readthedocs.io/projects/molecule/index.html) to test the roles in the collection. You must have [Docker](https://docs.docker.com/engine/install/) installed to run the Molecule scenarios.
@@ -62,60 +73,63 @@ cd extensions
 uv run molecule test --all
 ```
 
+Run a specific Molecule scenario:
+
+```bash
+cd extensions
+uv run molecule test -s <scenario>
+```
+
 ## Adding a new Molecule collection dependency
 
 The Molecule scenarios rely on collection dependencies. Add a new one by modifying the [`extensions/molecule/requirements.yml`](extensions/molecule/requirements.yml).
 
-## Running default nox sessions
+## Running collection tests
 
-The `community.beszel` Ansible collection uses [`antsibull-nox`](https://docs.ansible.com/projects/antsibull-nox/) to run various checks on the collection and its content. The default nox sessions include: `lint`, `formatters`, `codeqa`, `yamllint`, `antsibull-nox-config`, `docs-check`, `extra-checks`, and `build-import-check`.
+The `community.beszel` Ansible collection uses [`tox-ansible`](https://github.com/ansible/tox-ansible) to run its integration, unit, and sanity test environments across the supported Python and `ansible-core` versions.
 
-It is highly recommended to run the default nox sessions before committing your changes.
-
-Run the default nox sessions:
+Run the complete test matrix:
 
 ```bash
-uv run nox
+uv run tox --ansible
 ```
 
-## Running Integration tests
+To run a single generated environment, list the available environments with `uv run tox --ansible list`, then pass its name to `-e`.
 
-The `community.beszel` Ansible collection uses [`antsibull-nox`](https://docs.ansible.com/projects/antsibull-nox/) to run integration tests for the modules in the collection. You must have [Docker](https://docs.docker.com/engine/install/) installed to run the integration tests.
+## Running integration tests
+
+Integration tests require [Docker](https://docs.docker.com/engine/install/).
 
 Run the integration tests:
 
 ```bash
-uv run nox -e ansible-test-integration
+uv run tox --ansible -f integration
 ```
 
-## Running Unit tests
-
-The `community.beszel` Ansible collection uses [`antsibull-nox`](https://docs.ansible.com/projects/antsibull-nox/) to run unit tests for the modules in the collection. You must have [Docker](https://docs.docker.com/engine/install/) installed to run the unit tests.
+## Running unit tests
 
 Run the unit tests:
 
 ```bash
-uv run nox -e ansible-test-units
+uv run tox --ansible -f unit
 ```
 
-## Running Sanity checks
-
-The `community.beszel` Ansible collection uses [`antsibull-nox`](https://docs.ansible.com/projects/antsibull-nox/) to perform sanity checks for the modules in the collection. You must have [Docker](https://docs.docker.com/engine/install/) installed to run the sanity tests.
+## Running sanity checks
 
 Run the sanity checks:
 
 ```bash
-uv run nox -e ansible-test-sanity
+uv run tox --ansible -f sanity
 ```
 
-## Running Ansible Lint
+## Running Ansible lint
 
-The `community.beszel` Ansible collection uses [`ansible-lint`](http://ansible.readthedocs.io/projects/lint/) to lint Ansible roles and playbooks located in the `roles` and `playbooks` directories respectively. The collection uses [`antsibull-nox`](https://docs.ansible.com/projects/antsibull-nox/) to run `ansible-lint`.
+The `community.beszel` Ansible collection uses [`ansible-lint`](http://ansible.readthedocs.io/projects/lint/) to lint Ansible roles and playbooks located in the `roles` and `playbooks` directories respectively.
 
 Run `ansible-lint`:
 
 ```bash
-uv run nox -e ansible-lint
+uv run ansible-lint -v
 ```
 
 ## Adding a new Python integration tests dependency
@@ -124,4 +138,10 @@ Add a new Python integration tests dependency by adding it to the [`tests/integr
 
 ## Creating a changelog fragment
 
-The `community.beszel` Ansible collection uses [antsibull-changelog](https://github.com/ansible-community/antsibull-changelog) for generating the changelog. When make any changes to the collection, you need to create a changelog fragment in [`changelogs/fragments`](changelogs/fragments/) outlining the details of your changes. There are several [options](https://ansible.readthedocs.io/projects/antsibull-changelog/changelog.yaml-format/#changes) that you can use in your fragment. If you are unsure and need help with this step, please ask one of the collection [MAINTAINERS](MAINTAINERS).
+The `community.beszel` Ansible collection uses [antsibull-changelog](https://github.com/ansible-community/antsibull-changelog) for generating the changelog. When making changes to the collection, create a changelog fragment in [`changelogs/fragments`](changelogs/fragments/) outlining the details of your changes. There are several [options](https://ansible.readthedocs.io/projects/antsibull-changelog/changelog.yaml-format/#changes) that you can use in your fragment. If you are unsure and need help with this step, please ask one of the collection [MAINTAINERS](MAINTAINERS).
+
+Generate `CHANGELOG.md` and `CHANGELOG.rst` from the fragments:
+
+```bash
+uv run antsibull-changelog release -v
+```
