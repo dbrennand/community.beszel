@@ -1,7 +1,6 @@
 # Ansible Collection - `community.beszel`
 <!-- Add CI and code coverage badges here. Samples included below. -->
-[![antsibull-nox](https://github.com/ansible-collections/community.beszel/actions/workflows/antsibull-nox.yml/badge.svg)](https://github.com/ansible-collections/community.beszel/actions)
-[![Molecule](https://github.com/ansible-collections/community.beszel/actions/workflows/ansible-molecule.yml/badge.svg)](https://github.com/ansible-collections/community.beszel/actions)
+[![CI](https://github.com/ansible-collections/community.beszel/actions/workflows/ci.yml/badge.svg)](https://github.com/ansible-collections/community.beszel/actions)
 
 ## Our mission
 
