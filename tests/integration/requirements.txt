@@ -1,3 +1,2 @@
-pocketbase
 # Introduced via community.general
 jmespath>=1.0.1
