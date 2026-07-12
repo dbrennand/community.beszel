@@ -42,51 +42,45 @@ You are now ready to begin developing the collection. Please familiarize yoursel
 
 When you are ready to merge your changes from your fork, create a pull request in this repository.
 
-## Adding a new development dependency
+## Python Development Dependencies
 
-Add a new development dependency using `uv`:
+Python dependencies used for developing the collection are defined in the [`pyproject.toml`](pyproject.toml) `dev` dependency group.
+
+Add a new Python development dependency:
 
 ```bash
 uv add <package> --dev
 ```
 
-## Adding a new Python collection dependency
+## Python Collection Dependencies
 
-Add a new Python collection dependency by adding it to the [`meta/ee-requirements.txt`](meta/ee-requirements.txt). The Python dependency must be version constrained.
+Python collection dependencies are defined in [`meta/ee-requirements.txt`](meta/ee-requirements.txt). Dependencies declared in this file are required by the collection at runtime.
 
-## Running pre-commit checks
+## Running pre-commit Hooks
 
-Run all [`prek`](https://prek.j178.dev/) hooks from the project root:
+The pre-commit hooks are defined in [.pre-commit-config.yaml](.pre-commit-config.yaml) file.
+
+Run all pre-commit hooks using [`prek`](https://prek.j178.dev/) from the project root:
 
 ```bash
 uv run prek run --all-files
 ```
 
-## Running Molecule tests
+## Collection Tests
 
-The `community.beszel` Ansible collection uses [Molecule](https://ansible.readthedocs.io/projects/molecule/index.html) to test the roles in the collection. You must have [Docker](https://docs.docker.com/engine/install/) installed to run the Molecule scenarios.
+The `community.beszel` Ansible collection uses [`tox-ansible`](https://github.com/ansible/tox-ansible) to run its unit, integration and sanity test environments across the supported Python and `ansible-core` versions.
 
-Run the Molecule scenarios:
-
-```bash
-cd extensions
-uv run molecule test --all
-```
-
-Run a specific Molecule scenario:
+View the `tox-ansible` test environments:
 
 ```bash
-cd extensions
-uv run molecule test -s <scenario>
+uv run tox --ansible -l
 ```
 
-## Adding a new Molecule collection dependency
+Run a specific test environment:
 
-The Molecule scenarios rely on collection dependencies. Add a new one by modifying the [`extensions/molecule/requirements.yml`](extensions/molecule/requirements.yml).
-
-## Running collection tests
-
-The `community.beszel` Ansible collection uses [`tox-ansible`](https://github.com/ansible/tox-ansible) to run its integration, unit, and sanity test environments across the supported Python and `ansible-core` versions.
+```bash
+uv run tox --ansible -e <environment>
+```
 
 Run the complete test matrix:
 
@@ -94,35 +88,70 @@ Run the complete test matrix:
 uv run tox --ansible
 ```
 
-To run a single generated environment, list the available environments with `uv run tox --ansible list`, then pass its name to `-e`.
+### Unit Tests
 
-## Running integration tests
+Unit tests are located in the [`tests/unit`](tests/unit/) directory.
 
-Integration tests require [Docker](https://docs.docker.com/engine/install/).
+The `tox-ansible` unit test environment names are prefixed with `unit-*`.
 
-Run the integration tests:
+Unit test collection dependencies are defined in [`tests/unit/requirements.yml`](tests/unit/requirements.yml).
 
-```bash
-uv run tox --ansible -f integration
-```
-
-## Running unit tests
-
-Run the unit tests:
+Run all the unit test environments:
 
 ```bash
 uv run tox --ansible -f unit
 ```
 
-## Running sanity checks
+Run a specific unit test environment for Python 3.11 and `ansible-core` 2.19:
 
-Run the sanity checks:
+```bash
+uv run tox --ansible -e unit-py3.11-2.19
+```
+
+### Integration Tests
+
+> [!IMPORTANT]
+> You **must** have a Docker compatible container runtime to run the integration tests locally.
+
+Integration tests are located in the [`extensions/molecule`](extensions/molecule/) directory. Each subdirectory is a [Molecule](https://ansible.readthedocs.io/projects/molecule/index.html) scenario.
+
+The `tox-ansible` integration test environment names are prefixed with `integration-*`.
+
+Integration test collection dependencies are defined in [`tests/integration/requirements.yml`](tests/integration/requirements.yml).
+
+Integration test Python dependencies are defined in [`tests/integration/requirements.txt`](tests/integration/requirements.txt).
+
+Integration tests are triggered using the [`pytest-ansible` Molecule fixture](https://docs.ansible.com/projects/pytest-ansible/getting_started/#molecule-scenario-integration) located in [`tests/integration/test_integration.py`](tests/integration/test_integration.py).
+
+<!-- Mermaid Diagram showing the above here -->
+
+Run all the integration test environments:
+
+```bash
+uv run tox --ansible -f integration
+```
+
+Run a specific integration test environment for Python 3.11 and `ansible-core` 2.19:
+
+```bash
+uv run tox --ansible -e integration-py3.11-2.19
+```
+
+### Sanity Tests
+
+Run the sanity test environments:
 
 ```bash
 uv run tox --ansible -f sanity
 ```
 
-## Running Ansible lint
+Run a specific sanity test environment for Python 3.11 and `ansible-core` 2.19:
+
+```bash
+uv run tox --ansible -e sanity-py3.11-2.19
+```
+
+### Static Analysis - Ansible lint
 
 The `community.beszel` Ansible collection uses [`ansible-lint`](http://ansible.readthedocs.io/projects/lint/) to lint Ansible roles and playbooks located in the `roles` and `playbooks` directories respectively.
 
@@ -132,9 +161,11 @@ Run `ansible-lint`:
 uv run ansible-lint -v
 ```
 
-## Adding a new Python integration tests dependency
+The [.ansible-lint](.ansible-lint) configuration file is used to configure the `profile` and certain directories to exclude from linting.
 
-Add a new Python integration tests dependency by adding it to the [`tests/integration/requirements.txt`](tests/integration/requirements.txt).
+## Coding Guidelines
+
+See [Coding Guidelines](AGENTS.md#coding-guidelines).
 
 ## Creating a changelog fragment
 
