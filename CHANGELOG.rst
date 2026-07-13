@@ -4,6 +4,31 @@ Ansible community collection for Beszel Release Notes
 
 .. contents:: Topics
 
+v2.0.0
+======
+
+Release Summary
+---------------
+
+Release 2.0.0 of the Ansible community collection for Beszel.
+
+Minor Changes
+-------------
+
+- Add unit test coverage reporting to the tox-ansible test matrix.
+- Adopt the ansible-lint production profile and Ruff formatting checks.
+- Consolidate GitHub Actions into a generated tox-ansible test matrix with a separate ansible-lint job.
+- Refine collection build exclusions to omit development, test, cache, and local environment files from release artifacts.
+- Replace antsibull-nox with tox-ansible to run sanity, unit, and integration tests across the supported Python and ansible-core versions.
+- Run Molecule integration scenarios through the pytest-ansible Molecule fixture.
+- Simplify development and test dependency management and remove obsolete test configuration and workarounds.
+- community.beszel.agent - Add argument spec for role input validation.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- Drop support for ansible-core 2.17 and 2.18. The minimum supported version is now ansible-core 2.19.
+
 v1.0.0
 ======
 

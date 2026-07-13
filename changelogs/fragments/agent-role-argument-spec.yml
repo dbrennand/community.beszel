@@ -1,3 +1,0 @@
----
-minor_changes:
-  - agent role - implement argument_spec for input validation.

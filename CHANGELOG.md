@@ -2,59 +2,88 @@
 
 **Topics**
 
-- <a href="#v1-0-0">v1\.0\.0</a>
+- <a href="#v2-0-0">v2\.0\.0</a>
     - <a href="#release-summary">Release Summary</a>
     - <a href="#minor-changes">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
+- <a href="#v1-0-0">v1\.0\.0</a>
+    - <a href="#release-summary-1">Release Summary</a>
+    - <a href="#minor-changes-1">Minor Changes</a>
+    - <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
     - <a href="#bugfixes">Bugfixes</a>
 - <a href="#v0-7-1">v0\.7\.1</a>
-    - <a href="#release-summary-1">Release Summary</a>
+    - <a href="#release-summary-2">Release Summary</a>
     - <a href="#bugfixes-1">Bugfixes</a>
 - <a href="#v0-7-0">v0\.7\.0</a>
-    - <a href="#release-summary-2">Release Summary</a>
-    - <a href="#minor-changes-1">Minor Changes</a>
-- <a href="#v0-6-2">v0\.6\.2</a>
     - <a href="#release-summary-3">Release Summary</a>
     - <a href="#minor-changes-2">Minor Changes</a>
-- <a href="#v0-6-1">v0\.6\.1</a>
+- <a href="#v0-6-2">v0\.6\.2</a>
     - <a href="#release-summary-4">Release Summary</a>
     - <a href="#minor-changes-3">Minor Changes</a>
-- <a href="#v0-6-0">v0\.6\.0</a>
+- <a href="#v0-6-1">v0\.6\.1</a>
     - <a href="#release-summary-5">Release Summary</a>
     - <a href="#minor-changes-4">Minor Changes</a>
-    - <a href="#new-modules">New Modules</a>
-- <a href="#v0-5-0">v0\.5\.0</a>
+- <a href="#v0-6-0">v0\.6\.0</a>
     - <a href="#release-summary-6">Release Summary</a>
     - <a href="#minor-changes-5">Minor Changes</a>
-- <a href="#v0-4-0">v0\.4\.0</a>
+    - <a href="#new-modules">New Modules</a>
+- <a href="#v0-5-0">v0\.5\.0</a>
     - <a href="#release-summary-7">Release Summary</a>
     - <a href="#minor-changes-6">Minor Changes</a>
-- <a href="#v0-3-0">v0\.3\.0</a>
+- <a href="#v0-4-0">v0\.4\.0</a>
     - <a href="#release-summary-8">Release Summary</a>
     - <a href="#minor-changes-7">Minor Changes</a>
-    - <a href="#new-modules-1">New Modules</a>
-- <a href="#v0-2-0">v0\.2\.0</a>
+- <a href="#v0-3-0">v0\.3\.0</a>
     - <a href="#release-summary-9">Release Summary</a>
     - <a href="#minor-changes-8">Minor Changes</a>
-- <a href="#v0-1-0">v0\.1\.0</a>
+    - <a href="#new-modules-1">New Modules</a>
+- <a href="#v0-2-0">v0\.2\.0</a>
     - <a href="#release-summary-10">Release Summary</a>
+    - <a href="#minor-changes-9">Minor Changes</a>
+- <a href="#v0-1-0">v0\.1\.0</a>
+    - <a href="#release-summary-11">Release Summary</a>
 
-<a id="v1-0-0"></a>
-## v1\.0\.0
+<a id="v2-0-0"></a>
+## v2\.0\.0
 
 <a id="release-summary"></a>
 ### Release Summary
 
-Release 1\.0\.0 of the Ansible community collection for Beszel\.
+Release 2\.0\.0 of the Ansible community collection for Beszel\.
 
 <a id="minor-changes"></a>
+### Minor Changes
+
+* Add unit test coverage reporting to the tox\-ansible test matrix\.
+* Adopt the ansible\-lint production profile and Ruff formatting checks\.
+* Consolidate GitHub Actions into a generated tox\-ansible test matrix with a separate ansible\-lint job\.
+* Refine collection build exclusions to omit development\, test\, cache\, and local environment files from release artifacts\.
+* Replace antsibull\-nox with tox\-ansible to run sanity\, unit\, and integration tests across the supported Python and ansible\-core versions\.
+* Run Molecule integration scenarios through the pytest\-ansible Molecule fixture\.
+* Simplify development and test dependency management and remove obsolete test configuration and workarounds\.
+* community\.beszel\.agent \- Add argument spec for role input validation\.
+
+<a id="breaking-changes--porting-guide"></a>
+### Breaking Changes / Porting Guide
+
+* Drop support for ansible\-core 2\.17 and 2\.18\. The minimum supported version is now ansible\-core 2\.19\.
+
+<a id="v1-0-0"></a>
+## v1\.0\.0
+
+<a id="release-summary-1"></a>
+### Release Summary
+
+Release 1\.0\.0 of the Ansible community collection for Beszel\.
+
+<a id="minor-changes-1"></a>
 ### Minor Changes
 
 * community\.beszel\.agent \- Add GPU and S\.M\.A\.R\.T disk monitoring support with agent\_gpus and agent\_smart\_disks variables\.
 * community\.beszel\.hub \- Add hub\_bind\_address to customize the bind address to listen on\.
 * community\.beszel\.hub \- Add hub\_uid and hub\_user\_groups variables
 
-<a id="breaking-changes--porting-guide"></a>
+<a id="breaking-changes--porting-guide-1"></a>
 ### Breaking Changes / Porting Guide
 
 * community\.beszel\.agent \- Replace auto docker\-group detection with configurable agent\_user\_groups and agent\_docker\_host variables
@@ -67,7 +96,7 @@ Release 1\.0\.0 of the Ansible community collection for Beszel\.
 <a id="v0-7-1"></a>
 ## v0\.7\.1
 
-<a id="release-summary-1"></a>
+<a id="release-summary-2"></a>
 ### Release Summary
 
 Release 0\.7\.1 of the Ansible community collection for Beszel\.
@@ -81,12 +110,12 @@ Release 0\.7\.1 of the Ansible community collection for Beszel\.
 <a id="v0-7-0"></a>
 ## v0\.7\.0
 
-<a id="release-summary-2"></a>
+<a id="release-summary-3"></a>
 ### Release Summary
 
 Release 0\.7\.0 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-1"></a>
+<a id="minor-changes-2"></a>
 ### Minor Changes
 
 * community\.beszel\.agent \- Add \'agent\_uid\' role variable to specify the UID for the agent user\.
@@ -95,12 +124,12 @@ Release 0\.7\.0 of the Ansible community collection for Beszel\.
 <a id="v0-6-2"></a>
 ## v0\.6\.2
 
-<a id="release-summary-3"></a>
+<a id="release-summary-4"></a>
 ### Release Summary
 
 Release 0\.6\.2 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-2"></a>
+<a id="minor-changes-3"></a>
 ### Minor Changes
 
 * community\.beszel\.agent \- Create beszel user as a system user without home directory\.
@@ -109,12 +138,12 @@ Release 0\.6\.2 of the Ansible community collection for Beszel\.
 <a id="v0-6-1"></a>
 ## v0\.6\.1
 
-<a id="release-summary-4"></a>
+<a id="release-summary-5"></a>
 ### Release Summary
 
 Release 0\.6\.1 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-3"></a>
+<a id="minor-changes-4"></a>
 ### Minor Changes
 
 * community\.beszel\.agent \- Ensure the beszel\-agent systemd service is restarted to apply changes correctly\.
@@ -122,12 +151,12 @@ Release 0\.6\.1 of the Ansible community collection for Beszel\.
 <a id="v0-6-0"></a>
 ## v0\.6\.0
 
-<a id="release-summary-5"></a>
+<a id="release-summary-6"></a>
 ### Release Summary
 
 Release 0\.6\.0 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-4"></a>
+<a id="minor-changes-5"></a>
 ### Minor Changes
 
 * Add GitHub Actions workflow for running antsibull\-nox\.
@@ -142,12 +171,12 @@ Release 0\.6\.0 of the Ansible community collection for Beszel\.
 <a id="v0-5-0"></a>
 ## v0\.5\.0
 
-<a id="release-summary-6"></a>
+<a id="release-summary-7"></a>
 ### Release Summary
 
 Release 0\.5\.0 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-5"></a>
+<a id="minor-changes-6"></a>
 ### Minor Changes
 
 * Add AGENTS\.md to instruct AI agents how to perform development tasks within this project\.
@@ -160,12 +189,12 @@ Release 0\.5\.0 of the Ansible community collection for Beszel\.
 <a id="v0-4-0"></a>
 ## v0\.4\.0
 
-<a id="release-summary-7"></a>
+<a id="release-summary-8"></a>
 ### Release Summary
 
 Release 0\.4\.0 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-6"></a>
+<a id="minor-changes-7"></a>
 ### Minor Changes
 
 * community\.beszel\.agent \- Add \'agent\_name\' role variable\. Name of the host in the Beszel hub that is used instead of the system hostname when registering with the Beszel hub \(v0\.13\.0\+\)\.
@@ -173,12 +202,12 @@ Release 0\.4\.0 of the Ansible community collection for Beszel\.
 <a id="v0-3-0"></a>
 ## v0\.3\.0
 
-<a id="release-summary-8"></a>
+<a id="release-summary-9"></a>
 ### Release Summary
 
 Release 0\.3\.0 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-7"></a>
+<a id="minor-changes-8"></a>
 ### Minor Changes
 
 * community\.beszel\.agent \- Add \'agent\_token\' role variable\. Universal token used by the Beszel binary agent to automatically register with Beszel hub\.
@@ -193,12 +222,12 @@ Release 0\.3\.0 of the Ansible community collection for Beszel\.
 <a id="v0-2-0"></a>
 ## v0\.2\.0
 
-<a id="release-summary-9"></a>
+<a id="release-summary-10"></a>
 ### Release Summary
 
 Release 0\.2\.0 of the Ansible community collection for Beszel\.
 
-<a id="minor-changes-8"></a>
+<a id="minor-changes-9"></a>
 ### Minor Changes
 
 * community\.beszel\.agent \- Add \'agent\_hub\_url\' role variable\. URL of the Beszel hub for the Beszel binary agent to connect to\.
@@ -206,7 +235,7 @@ Release 0\.2\.0 of the Ansible community collection for Beszel\.
 <a id="v0-1-0"></a>
 ## v0\.1\.0
 
-<a id="release-summary-10"></a>
+<a id="release-summary-11"></a>
 ### Release Summary
 
 Release 0\.1\.0 of the Ansible community collection for Beszel\.

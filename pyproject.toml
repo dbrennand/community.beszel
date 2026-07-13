@@ -1,24 +1,34 @@
 [project]
 name = "community-beszel"
-version = "1.0.0"
+version = "2.0.0"
 description = "Ansible community collection for Beszel."
 readme = "README.md"
-requires-python = ">=3.13, <3.14"
+requires-python = ">=3.11, <3.14"
 dependencies = [
-    "ansible-core==2.20.0",
     "pocketbase",
 ]
 
 [dependency-groups]
 dev = [
-    "antsibull-changelog[toml]>=0.34.0",
-    "antsibull-nox>=1.5.0",
+    "antsibull-changelog>=0.35.1",
     "codespell>=2.4.1",
     "prek>=0.2.20",
     {include-group = "test"},
 ]
 test = [
-    "molecule>=25.12.0",
-    "molecule-plugins[docker]>=25.8.12",
-    "jmespath>=1.0.1"
+    "ruff>=0.15.10",
+    "ansible-lint>=26.6.0",
+    "tox-uv-bare>=1.35.1",
+    "tox-ansible>=26.3.0",
+]
+
+[tool.uv.sources]
+tox-ansible = { git = "https://github.com/dbrennand/tox-ansible.git", rev = "0a407521f284ef4117394f15a8ec6528d10f6317" }
+
+[tool.tox-ansible]
+coverage = true
+skip = [
+    "2.16",
+    "2.17",
+    "2.18"
 ]
