@@ -19,11 +19,8 @@ test = [
     "ruff>=0.15.10",
     "ansible-lint>=26.6.0",
     "tox-uv-bare>=1.35.1",
-    "tox-ansible>=26.3.0",
+    "tox-ansible>=26.7.1",
 ]
-
-[tool.uv.sources]
-tox-ansible = { git = "https://github.com/dbrennand/tox-ansible.git", rev = "0a407521f284ef4117394f15a8ec6528d10f6317" }
 
 [tool.tox-ansible]
 coverage = true
