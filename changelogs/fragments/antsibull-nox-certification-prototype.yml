@@ -1,2 +1,3 @@
 trivial:
   - Add a branch-specific workflow to test the partner-certification-checker antsibull-nox prototype.
+  - Temporarily lower requires_ansible to >=2.16.0 on the prototype branch to exercise all certification sanity branches; this does not establish support for older ansible-core versions.
