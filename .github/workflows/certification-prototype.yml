@@ -1,0 +1,22 @@
+---
+name: Antsibull Nox certification prototype
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - prototype/antsibull-nox-certification
+
+permissions:
+  contents: read
+
+concurrency:
+  group: certification-prototype-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certification:
+    # Track the prototype branch so checker changes can be tested before release.
+    uses: dbrennand/partner-certification-checker/.github/workflows/certification-reusable.yml@prototype/antsibull-nox # zizmor: ignore[unpinned-uses]
+    with:
+      ansible-core-version: "2.20.0"
